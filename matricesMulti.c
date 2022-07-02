@@ -69,14 +69,12 @@ int main(int argc, char const *argv[])
 			arr[k].columna= j; 
 			arr[k].hilo= k+1;
 			insertar(i,j,k);
-			//pthread_create(&hilos[k],NULL,(void *) &multiplicarMatrices, (void *)&arr[k]);
 			k++;
 		}
 	}
 	k=0;
 	do{
 		pthread_create(&hilos[k],NULL,(void *) &multiplicarMatrices, (void *)&arr[k]);
-		//pthread_join(hilos[k],NULL);
 		k++;
 	}while(k<(f1*c2));
 	k=0;
@@ -95,10 +93,8 @@ void multiplicarMatrices(Prioridad * p){
 	int i;
 	for (i = 0; i < c1; ++i)
 	{
-		//(*(r+f*c2+c)) = (*(r+f*c2+c)) + ((*(a+f*c1+i)) * (*(b+i*c2+c)));
 		r[f*c2+c]= r[f*c2+c] + (a[f*c1+i]*b[i*c2+c]);
 	}
-	//printf("\n");
 	do{
 		sem_wait(&semilla);
 		if (cabeza == NULL)
@@ -112,10 +108,8 @@ void multiplicarMatrices(Prioridad * p){
 			for (i = 0; i < c1; ++i)
 			{
 				if (i == c1-1)
-					//printf("%d * %d = %d", (*(a+f*c1+i)), (*(b+i*c2+c)), (*(r+f*c2+c)));
 					printf("(%d x %d) = %d", a[f*c1+i], b[i*c2+c], r[f*c2+c]);
 				else
-					//printf("%d * %d + ", (*(a+f*c1+i)), (*(b+i*c2+c)));
 					printf("(%d x %d) + ", a[f*c1+i], b[i*c2+c]);
 
 			}
