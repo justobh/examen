@@ -34,6 +34,11 @@ int main(int argc, char const *argv[])
 	srand (time(NULL));
 	f1= atoi(argv[1]); c1= atoi(argv[2]); 
 	f2= atoi(argv[3]); c2= atoi(argv[4]);
+	if (c1 != f2)
+	{
+		perror("El numero de columnas de la 1ra matriz debe ser igual al numero de final de la 2da matriz");
+		exit(-1);
+	}
 	int i,j,k=0;
 	int mat1[f1][c1];
 	int mat2[f2][c2];
